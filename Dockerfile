@@ -4,7 +4,7 @@ LABEL maintainer "Michele Mastrogiovanni <michele.mastrogiovanni@gmail.com>"
 RUN mkdir -p /src
 COPY silent.cfg /src
 
-RUN DEBIAN_FRONTEND noninteractive && \
+RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install -y \
         ca-certificates \
