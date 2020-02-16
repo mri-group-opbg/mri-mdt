@@ -1,10 +1,18 @@
 FROM ubuntu:18.04
+LABEL maintainer "Michele Mastrogiovanni <michele.mastrogiovanni@gmail.com>"
 
 RUN mkdir -p /src
 COPY silent.cfg /src
 
-RUN apt-get update && \
-    apt-get install -y software-properties-common lsb-core wget && \
+RUN DEBIAN_FRONTEND noninteractive && \
+    apt-get update && \
+    apt-get install -y \
+        ca-certificates \
+        xauth \
+        software-properties-common \
+        lsb-core \
+        wget && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /src && \ 
